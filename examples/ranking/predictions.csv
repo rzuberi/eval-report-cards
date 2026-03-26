@@ -1,0 +1,16 @@
+split,query_id,item_id,relevance,score,query_group
+validation,q1,a,3,0.92,head
+validation,q1,b,1,0.75,head
+validation,q1,c,0,0.40,head
+validation,q2,a,0,0.81,tail
+validation,q2,b,2,0.78,tail
+validation,q2,c,1,0.52,tail
+test,q3,a,0,0.88,faq
+test,q3,b,3,0.84,faq
+test,q3,c,1,0.60,faq
+test,q4,a,2,0.90,faq
+test,q4,b,0,0.45,faq
+test,q4,c,1,0.42,faq
+test,q5,a,0,0.67,support
+test,q5,b,0,0.62,support
+test,q5,c,2,0.60,support

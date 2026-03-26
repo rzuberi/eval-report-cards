@@ -1,0 +1,7 @@
+{
+  "reported_metrics": {
+    "primary_metric": "ndcg_at_10",
+    "validation_ndcg_at_10": 0.841,
+    "test_ndcg_at_10": 0.702
+  }
+}

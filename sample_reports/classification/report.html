@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Support Ticket Classifier Evaluation Report</title>
+  <style>
+    body { font-family: Georgia, 'Times New Roman', serif; margin: 40px auto; max-width: 960px; color: #1f2933; line-height: 1.5; padding: 0 20px; background: #faf8f2; }
+    h1, h2, h3 { color: #0b3c49; }
+    .meta { background: #eef4f3; border-left: 4px solid #0b3c49; padding: 14px 18px; margin-bottom: 24px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px 0; background: white; }
+    th, td { border: 1px solid #d7e0df; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #e3ecea; }
+    section { margin-bottom: 26px; }
+    code { background: #edf2f7; padding: 1px 4px; }
+  </style>
+</head>
+<body>
+  <h1>Support Ticket Classifier Evaluation Report</h1>
+  <div class="meta">
+    <strong>Project:</strong> Support Ticket Triage<br>
+    <strong>Task:</strong> Urgency classification<br>
+    <strong>Template:</strong> <code>classification</code><br>
+    <strong>Dataset:</strong> Internal synthetic support-ticket benchmark v1<br>
+    <strong>Data split:</strong> test=8, train=6, validation=4
+  </div>
+  <section>
+    <h2>Task Setup</h2>
+    <p>Evaluate a three-class urgency classifier for incoming support tickets across web, email, and API sources.</p>
+  </section>
+  <section>
+    <h2>Assumptions</h2>
+    <ul><li>The supplied confidence is the model confidence for the predicted class.</li><li>Email traffic is expected to be noisier than API or web traffic.</li></ul>
+  </section>
+  <section>
+    <h2>Chosen Metrics</h2>
+    <ul><li>Macro F1 is primary because class balance matters.</li><li>Accuracy is included for quick operational interpretation.</li></ul>
+  </section>
+  <section>
+    <h2>Main Results</h2>
+    <h3>Overall</h3>
+    <table><thead><tr><th>count</th><th>accuracy</th><th>macro_precision</th><th>macro_recall</th><th>macro_f1</th><th>per_label</th><th>confusion</th></tr></thead><tbody><tr><td>18</td><td>0.7778</td><td>0.7937</td><td>0.7937</td><td>0.7778</td><td>label=high, support=7, precision=1.0000, recall=0.7143, f1=0.8333, label=low, support=5, precision=0.7143, recall=1.0000, f1=0.8333, label=medium, support=6, precision=0.6667, recall=0.6667, f1=0.6667</td><td>high=high=5, low=0, medium=2, low=high=0, low=5, medium=0, medium=high=0, low=2, medium=4</td></tr></tbody></table>
+    <h3>By Split</h3>
+    <table><thead><tr><th>split</th><th>count</th><th>accuracy</th><th>macro_precision</th><th>macro_recall</th><th>macro_f1</th><th>per_label</th><th>confusion</th></tr></thead><tbody><tr><td>test</td><td>8</td><td>0.7500</td><td>0.7778</td><td>0.7778</td><td>0.7556</td><td>label=high, support=3, precision=1.0000, recall=0.6667, f1=0.8000, label=low, support=2, precision=0.6667, recall=1.0000, f1=0.8000, label=medium, support=3, precision=0.6667, recall=0.6667, f1=0.6667</td><td>high=high=2, low=0, medium=1, low=high=0, low=2, medium=0, medium=high=0, low=1, medium=2</td></tr><tr><td>train</td><td>6</td><td>0.8333</td><td>0.8889</td><td>0.8333</td><td>0.8222</td><td>label=high, support=2, precision=1.0000, recall=1.0000, f1=1.0000, label=low, support=2, precision=0.6667, recall=1.0000, f1=0.8000, label=medium, support=2, precision=1.0000, recall=0.5000, f1=0.6667</td><td>high=high=2, low=0, medium=0, low=high=0, low=2, medium=0, medium=high=0, low=1, medium=1</td></tr><tr><td>validation</td><td>4</td><td>0.7500</td><td>0.8333</td><td>0.8333</td><td>0.7778</td><td>label=high, support=2, precision=1.0000, recall=0.5000, f1=0.6667, label=low, support=1, precision=1.0000, recall=1.0000, f1=1.0000, label=medium, support=1, precision=0.5000, recall=1.0000, f1=0.6667</td><td>high=high=1, low=0, medium=1, low=high=0, low=1, medium=0, medium=high=0, low=0, medium=1</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Reported Metrics</h2>
+    <table><thead><tr><th>primary_metric</th><th>overall_accuracy</th><th>overall_macro_f1</th></tr></thead><tbody><tr><td>macro_f1</td><td>0.7778</td><td>0.7685</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Uncertainty / Confidence</h2>
+    <table><thead><tr><th>available</th><th>mean_correct_confidence</th><th>mean_error_confidence</th><th>high_confidence_error_rate</th><th>bootstrap_ci_95</th></tr></thead><tbody><tr><td>True</td><td>0.7921</td><td>0.7250</td><td>0.0000</td><td>0.6400, 0.8700</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Error Slices</h2>
+    <table><thead><tr><th>column</th><th>value</th><th>count</th><th>score</th></tr></thead><tbody><tr><td>source</td><td>email</td><td>4</td><td>0.0000</td></tr><tr><td>region</td><td>south</td><td>9</td><td>0.5556</td></tr><tr><td>region</td><td>north</td><td>9</td><td>1.0000</td></tr><tr><td>source</td><td>web</td><td>8</td><td>1.0000</td></tr><tr><td>source</td><td>api</td><td>6</td><td>1.0000</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Likely Failure Modes</h2>
+    <ul><li>Performance drops on `source=email` where accuracy falls to 0.00.</li><li>Wrong predictions are often still made with fairly high confidence.</li></ul>
+  </section>
+  <section>
+    <h2>Key Limitations</h2>
+    <ul><li>No major limitations were automatically flagged.</li></ul>
+  </section>
+</body>
+</html>

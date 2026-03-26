@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eval-report-cards"
+version = "0.1.0"
+description = "CLI tool for turning predictions, metrics, config, and logs into standardized evaluation reports."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name = "Rehan Zuberi" }
+]
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+eval-report-cards = "eval_report_cards.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

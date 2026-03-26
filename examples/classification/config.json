@@ -1,0 +1,15 @@
+{
+  "report_title": "Support Ticket Classifier Evaluation Report",
+  "project_name": "Support Ticket Triage",
+  "task_name": "Urgency classification",
+  "task_description": "Evaluate a three-class urgency classifier for incoming support tickets across web, email, and API sources.",
+  "dataset": "Internal synthetic support-ticket benchmark v1",
+  "chosen_metrics": [
+    "Macro F1 is primary because class balance matters.",
+    "Accuracy is included for quick operational interpretation."
+  ],
+  "assumptions": [
+    "The supplied confidence is the model confidence for the predicted class.",
+    "Email traffic is expected to be noisier than API or web traffic."
+  ]
+}

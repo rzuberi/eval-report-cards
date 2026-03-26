@@ -1,0 +1,15 @@
+{
+  "report_title": "Retrieval Model Evaluation Report",
+  "project_name": "Product Search",
+  "task_name": "Ranking candidate results",
+  "task_description": "Evaluate a lightweight product retrieval model across head, tail, FAQ, and support-style queries.",
+  "dataset": "Synthetic retrieval benchmark",
+  "chosen_metrics": [
+    "NDCG@10 is primary because graded relevance matters.",
+    "MRR and Hit@1 are included for first-result usefulness."
+  ],
+  "assumptions": [
+    "Scores are comparable within a query but not across queries.",
+    "Query groups are a useful slice for error analysis."
+  ]
+}

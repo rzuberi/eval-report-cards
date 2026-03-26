@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Retrieval Model Evaluation Report</title>
+  <style>
+    body { font-family: Georgia, 'Times New Roman', serif; margin: 40px auto; max-width: 960px; color: #1f2933; line-height: 1.5; padding: 0 20px; background: #faf8f2; }
+    h1, h2, h3 { color: #0b3c49; }
+    .meta { background: #eef4f3; border-left: 4px solid #0b3c49; padding: 14px 18px; margin-bottom: 24px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px 0; background: white; }
+    th, td { border: 1px solid #d7e0df; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #e3ecea; }
+    section { margin-bottom: 26px; }
+    code { background: #edf2f7; padding: 1px 4px; }
+  </style>
+</head>
+<body>
+  <h1>Retrieval Model Evaluation Report</h1>
+  <div class="meta">
+    <strong>Project:</strong> Product Search<br>
+    <strong>Task:</strong> Ranking candidate results<br>
+    <strong>Template:</strong> <code>ranking</code><br>
+    <strong>Dataset:</strong> Synthetic retrieval benchmark<br>
+    <strong>Data split:</strong> test=9, validation=6
+  </div>
+  <section>
+    <h2>Task Setup</h2>
+    <p>Evaluate a lightweight product retrieval model across head, tail, FAQ, and support-style queries.</p>
+  </section>
+  <section>
+    <h2>Assumptions</h2>
+    <ul><li>Scores are comparable within a query but not across queries.</li><li>Query groups are a useful slice for error analysis.</li></ul>
+  </section>
+  <section>
+    <h2>Chosen Metrics</h2>
+    <ul><li>NDCG@10 is primary because graded relevance matters.</li><li>MRR and Hit@1 are included for first-result usefulness.</li></ul>
+  </section>
+  <section>
+    <h2>Main Results</h2>
+    <h3>Overall</h3>
+    <table><thead><tr><th>query_count</th><th>ndcg_at_3</th><th>ndcg_at_10</th><th>mrr</th><th>hit_at_1</th><th>mean_top_gap</th></tr></thead><tbody><tr><td>5</td><td>0.7534</td><td>0.7534</td><td>0.6667</td><td>0.4000</td><td>0.1480</td></tr></tbody></table>
+    <h3>By Split</h3>
+    <table><thead><tr><th>split</th><th>query_count</th><th>ndcg_at_3</th><th>ndcg_at_10</th><th>mrr</th><th>hit_at_1</th><th>mean_top_gap</th></tr></thead><tbody><tr><td>test</td><td>3</td><td>0.7027</td><td>0.7027</td><td>0.6111</td><td>0.3333</td><td>0.1800</td></tr><tr><td>validation</td><td>2</td><td>0.8295</td><td>0.8295</td><td>0.7500</td><td>0.5000</td><td>0.1000</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Reported Metrics</h2>
+    <table><thead><tr><th>primary_metric</th><th>validation_ndcg_at_10</th><th>test_ndcg_at_10</th></tr></thead><tbody><tr><td>ndcg_at_10</td><td>0.8410</td><td>0.7020</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Uncertainty / Confidence</h2>
+    <table><thead><tr><th>available</th><th>mean_top_rank_score_gap</th><th>note</th></tr></thead><tbody><tr><td>True</td><td>0.1480</td><td>Ranking confidence is approximated from the score gap between the top two items per query.</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Error Slices</h2>
+    <table><thead><tr><th>column</th><th>value</th><th>count</th><th>score</th></tr></thead><tbody><tr><td>query_group</td><td>support</td><td>3</td><td>0.5000</td></tr><tr><td>query_group</td><td>tail</td><td>3</td><td>0.6590</td></tr><tr><td>query_group</td><td>faq</td><td>6</td><td>0.8041</td></tr><tr><td>query_group</td><td>head</td><td>3</td><td>1.0000</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Likely Failure Modes</h2>
+    <ul><li>Ranking quality falls on `query_group=support` where NDCG@10 drops to 0.50.</li></ul>
+  </section>
+  <section>
+    <h2>Key Limitations</h2>
+    <ul><li>No major limitations were automatically flagged.</li></ul>
+  </section>
+</body>
+</html>

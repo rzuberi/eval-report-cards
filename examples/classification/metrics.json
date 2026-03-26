@@ -1,0 +1,10 @@
+{
+  "reported_metrics": {
+    "primary_metric": "macro_f1",
+    "overall_accuracy": 0.7778,
+    "overall_macro_f1": 0.7685
+  },
+  "uncertainty": {
+    "bootstrap_ci_95": [0.64, 0.87]
+  }
+}

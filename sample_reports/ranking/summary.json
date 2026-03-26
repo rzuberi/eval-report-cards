@@ -1,0 +1,92 @@
+{
+  "chosen_metrics": [
+    "NDCG@10 is primary because graded relevance matters.",
+    "MRR and Hit@1 are included for first-result usefulness."
+  ],
+  "error_slices": [
+    {
+      "column": "query_group",
+      "count": 3,
+      "score": 0.5,
+      "value": "support"
+    },
+    {
+      "column": "query_group",
+      "count": 3,
+      "score": 0.659,
+      "value": "tail"
+    },
+    {
+      "column": "query_group",
+      "count": 6,
+      "score": 0.8041,
+      "value": "faq"
+    },
+    {
+      "column": "query_group",
+      "count": 3,
+      "score": 1.0,
+      "value": "head"
+    }
+  ],
+  "likely_failure_modes": [
+    "Ranking quality falls on `query_group=support` where NDCG@10 drops to 0.50."
+  ],
+  "limitations": [],
+  "logs_supplied": false,
+  "main_results": {
+    "by_split": {
+      "test": {
+        "hit_at_1": 0.3333,
+        "mean_top_gap": 0.18,
+        "mrr": 0.6111,
+        "ndcg_at_10": 0.7027,
+        "ndcg_at_3": 0.7027,
+        "query_count": 3
+      },
+      "validation": {
+        "hit_at_1": 0.5,
+        "mean_top_gap": 0.1,
+        "mrr": 0.75,
+        "ndcg_at_10": 0.8295,
+        "ndcg_at_3": 0.8295,
+        "query_count": 2
+      }
+    },
+    "overall": {
+      "hit_at_1": 0.4,
+      "mean_top_gap": 0.148,
+      "mrr": 0.6667,
+      "ndcg_at_10": 0.7534,
+      "ndcg_at_3": 0.7534,
+      "query_count": 5
+    }
+  },
+  "reported_metrics": {
+    "primary_metric": "ndcg_at_10",
+    "test_ndcg_at_10": 0.702,
+    "validation_ndcg_at_10": 0.841
+  },
+  "task_setup": {
+    "assumptions": [
+      "Scores are comparable within a query but not across queries.",
+      "Query groups are a useful slice for error analysis."
+    ],
+    "data_split": {
+      "test": 9,
+      "validation": 6
+    },
+    "dataset": "Synthetic retrieval benchmark",
+    "evaluation_notes": [],
+    "project_name": "Product Search",
+    "task_description": "Evaluate a lightweight product retrieval model across head, tail, FAQ, and support-style queries.",
+    "task_name": "Ranking candidate results"
+  },
+  "template": "ranking",
+  "title": "Retrieval Model Evaluation Report",
+  "uncertainty": {
+    "available": true,
+    "mean_top_rank_score_gap": 0.148,
+    "note": "Ranking confidence is approximated from the score gap between the top two items per query."
+  }
+}

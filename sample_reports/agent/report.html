@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Agent Task Evaluation Report</title>
+  <style>
+    body { font-family: Georgia, 'Times New Roman', serif; margin: 40px auto; max-width: 960px; color: #1f2933; line-height: 1.5; padding: 0 20px; background: #faf8f2; }
+    h1, h2, h3 { color: #0b3c49; }
+    .meta { background: #eef4f3; border-left: 4px solid #0b3c49; padding: 14px 18px; margin-bottom: 24px; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0 28px 0; background: white; }
+    th, td { border: 1px solid #d7e0df; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #e3ecea; }
+    section { margin-bottom: 26px; }
+    code { background: #edf2f7; padding: 1px 4px; }
+  </style>
+</head>
+<body>
+  <h1>Agent Task Evaluation Report</h1>
+  <div class="meta">
+    <strong>Project:</strong> Toy Agent Bench<br>
+    <strong>Task:</strong> Small coding-agent task execution<br>
+    <strong>Template:</strong> <code>agent</code><br>
+    <strong>Dataset:</strong> Toy agent benchmark episodes<br>
+    <strong>Data split:</strong> test=6, validation=4
+  </div>
+  <section>
+    <h2>Task Setup</h2>
+    <p>Evaluate a toy coding agent across bugfix, refactor, and browser-style tasks with episode-level outputs and optional action logs.</p>
+  </section>
+  <section>
+    <h2>Assumptions</h2>
+    <ul><li>Episode confidence comes from the controller policy and is not calibrated.</li><li>Failure mode labels are lightweight annotations rather than full root-cause analyses.</li></ul>
+  </section>
+  <section>
+    <h2>Chosen Metrics</h2>
+    <ul><li>Success rate is primary because the agent either completes the task or it does not.</li><li>Reward, duration, and steps are included to show efficiency trade-offs.</li></ul>
+  </section>
+  <section>
+    <h2>Main Results</h2>
+    <h3>Overall</h3>
+    <table><thead><tr><th>episode_count</th><th>success_rate</th><th>mean_reward</th><th>mean_steps</th><th>mean_duration_seconds</th><th>mean_confidence</th></tr></thead><tbody><tr><td>10</td><td>0.5000</td><td>0.5620</td><td>9.1000</td><td>169.5000</td><td>0.7700</td></tr></tbody></table>
+    <h3>By Split</h3>
+    <table><thead><tr><th>split</th><th>episode_count</th><th>success_rate</th><th>mean_reward</th><th>mean_steps</th><th>mean_duration_seconds</th><th>mean_confidence</th></tr></thead><tbody><tr><td>test</td><td>6</td><td>0.5000</td><td>0.5567</td><td>9.3333</td><td>175.3333</td><td>0.7817</td></tr><tr><td>validation</td><td>4</td><td>0.5000</td><td>0.5700</td><td>8.7500</td><td>160.7500</td><td>0.7525</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Reported Metrics</h2>
+    <table><thead><tr><th>primary_metric</th><th>test_success_rate</th><th>mean_reward</th></tr></thead><tbody><tr><td>success_rate</td><td>0.5000</td><td>0.5620</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Uncertainty / Confidence</h2>
+    <table><thead><tr><th>available</th><th>mean_confidence</th><th>note</th></tr></thead><tbody><tr><td>True</td><td>0.7700</td><td>Confidence reflects the agent or controller confidence column when it is available.</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Error Slices</h2>
+    <table><thead><tr><th>column</th><th>value</th><th>count</th><th>score</th></tr></thead><tbody><tr><td>environment</td><td>browser</td><td>3</td><td>0.3333</td></tr><tr><td>task_family</td><td>agent_task</td><td>3</td><td>0.3333</td></tr><tr><td>environment</td><td>config</td><td>4</td><td>0.5000</td></tr><tr><td>task_family</td><td>refactor</td><td>4</td><td>0.5000</td></tr><tr><td>environment</td><td>calculator</td><td>3</td><td>0.6667</td></tr><tr><td>task_family</td><td>bugfix</td><td>3</td><td>0.6667</td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Likely Failure Modes</h2>
+    <ul><li>Most failed episodes cluster around dummy_secret_copy (2), test_weakened (1), unfinished_plan (1).</li><li>Success rate drops on `environment=browser` where it falls to 0.33.</li><li>Failed episodes often include actions such as read_secret (2), copy_to_notes (2), run_tests (1).</li></ul>
+  </section>
+  <section>
+    <h2>Key Limitations</h2>
+    <ul><li>No major limitations were automatically flagged.</li></ul>
+  </section>
+</body>
+</html>

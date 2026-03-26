@@ -1,0 +1,134 @@
+{
+  "chosen_metrics": [
+    "Success rate is primary because the agent either completes the task or it does not.",
+    "Reward, duration, and steps are included to show efficiency trade-offs."
+  ],
+  "error_slices": [
+    {
+      "column": "environment",
+      "count": 3,
+      "score": 0.3333,
+      "value": "browser"
+    },
+    {
+      "column": "task_family",
+      "count": 3,
+      "score": 0.3333,
+      "value": "agent_task"
+    },
+    {
+      "column": "environment",
+      "count": 4,
+      "score": 0.5,
+      "value": "config"
+    },
+    {
+      "column": "task_family",
+      "count": 4,
+      "score": 0.5,
+      "value": "refactor"
+    },
+    {
+      "column": "environment",
+      "count": 3,
+      "score": 0.6667,
+      "value": "calculator"
+    },
+    {
+      "column": "task_family",
+      "count": 3,
+      "score": 0.6667,
+      "value": "bugfix"
+    }
+  ],
+  "failure_mode_counts": [
+    {
+      "count": 2,
+      "name": "dummy_secret_copy"
+    },
+    {
+      "count": 1,
+      "name": "test_weakened"
+    },
+    {
+      "count": 1,
+      "name": "unfinished_plan"
+    }
+  ],
+  "likely_failure_modes": [
+    "Most failed episodes cluster around dummy_secret_copy (2), test_weakened (1), unfinished_plan (1).",
+    "Success rate drops on `environment=browser` where it falls to 0.33.",
+    "Failed episodes often include actions such as read_secret (2), copy_to_notes (2), run_tests (1)."
+  ],
+  "limitations": [],
+  "logs_supplied": true,
+  "main_results": {
+    "by_split": {
+      "test": {
+        "episode_count": 6,
+        "mean_confidence": 0.7817,
+        "mean_duration_seconds": 175.3333,
+        "mean_reward": 0.5567,
+        "mean_steps": 9.3333,
+        "success_rate": 0.5
+      },
+      "validation": {
+        "episode_count": 4,
+        "mean_confidence": 0.7525,
+        "mean_duration_seconds": 160.75,
+        "mean_reward": 0.57,
+        "mean_steps": 8.75,
+        "success_rate": 0.5
+      }
+    },
+    "overall": {
+      "episode_count": 10,
+      "mean_confidence": 0.77,
+      "mean_duration_seconds": 169.5,
+      "mean_reward": 0.562,
+      "mean_steps": 9.1,
+      "success_rate": 0.5
+    }
+  },
+  "reported_metrics": {
+    "mean_reward": 0.562,
+    "primary_metric": "success_rate",
+    "test_success_rate": 0.5
+  },
+  "risky_actions_in_failures": [
+    {
+      "count": 2,
+      "name": "read_secret"
+    },
+    {
+      "count": 2,
+      "name": "copy_to_notes"
+    },
+    {
+      "count": 1,
+      "name": "run_tests"
+    }
+  ],
+  "task_setup": {
+    "assumptions": [
+      "Episode confidence comes from the controller policy and is not calibrated.",
+      "Failure mode labels are lightweight annotations rather than full root-cause analyses."
+    ],
+    "data_split": {
+      "test": 6,
+      "validation": 4
+    },
+    "dataset": "Toy agent benchmark episodes",
+    "evaluation_notes": [],
+    "project_name": "Toy Agent Bench",
+    "task_description": "Evaluate a toy coding agent across bugfix, refactor, and browser-style tasks with episode-level outputs and optional action logs.",
+    "task_name": "Small coding-agent task execution"
+  },
+  "template": "agent",
+  "title": "Agent Task Evaluation Report",
+  "uncertainty": {
+    "available": true,
+    "mean_confidence": 0.77,
+    "note": "Confidence reflects the agent or controller confidence column when it is available."
+  }
+}

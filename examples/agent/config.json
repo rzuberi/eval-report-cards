@@ -1,0 +1,15 @@
+{
+  "report_title": "Agent Task Evaluation Report",
+  "project_name": "Toy Agent Bench",
+  "task_name": "Small coding-agent task execution",
+  "task_description": "Evaluate a toy coding agent across bugfix, refactor, and browser-style tasks with episode-level outputs and optional action logs.",
+  "dataset": "Toy agent benchmark episodes",
+  "chosen_metrics": [
+    "Success rate is primary because the agent either completes the task or it does not.",
+    "Reward, duration, and steps are included to show efficiency trade-offs."
+  ],
+  "assumptions": [
+    "Episode confidence comes from the controller policy and is not calibrated.",
+    "Failure mode labels are lightweight annotations rather than full root-cause analyses."
+  ]
+}

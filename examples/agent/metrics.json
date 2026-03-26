@@ -1,0 +1,7 @@
+{
+  "reported_metrics": {
+    "primary_metric": "success_rate",
+    "test_success_rate": 0.5,
+    "mean_reward": 0.562
+  }
+}
